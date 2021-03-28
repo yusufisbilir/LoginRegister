@@ -3,6 +3,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
 const path = require('path');
+const { get } = require('http');
 
 dotenv.config();
 
@@ -29,5 +30,9 @@ db.connect((err)=>{
 app.get('/', (req, res) => {
     res.render('index')
 });
+
+app.get('/register', (req, res) => {
+    res.render('register')
+})
 
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));
