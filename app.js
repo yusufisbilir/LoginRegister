@@ -2,6 +2,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+app.use(cookieParser());
 
 //Html engine
 app.set('view engine','hbs');
