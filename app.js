@@ -2,6 +2,8 @@
 const express = require('express');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const path = require('path');
+
 dotenv.config();
 
 const app = express();
@@ -14,13 +16,18 @@ const db = mysql.createConnection({
     database:process.env.DB_DATABASE
 });
 
+app.use(express.static('public'));
+
+//Html engine
+app.set('view engine','hbs');
+
 db.connect((err)=>{
     if(err) console.log(err);
     else console.log('connected MySql');
 });
 
 app.get('/', (req, res) => {
-    res.send('Home page')
+    res.render('index')
 });
 
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));
