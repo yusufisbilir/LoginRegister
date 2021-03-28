@@ -17,6 +17,9 @@ const db = mysql.createConnection({
 
 app.use(express.static('public'));
 
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+
 //Html engine
 app.set('view engine','hbs');
 
@@ -27,5 +30,6 @@ db.connect((err)=>{
 
 //routes
 app.use('/',require('./routes/pages'));
+app.use('/auth',require('./routes/auth'));
 
 app.listen(3000, () => console.log(`App listening on port 3000!`));
